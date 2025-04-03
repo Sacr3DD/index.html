@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portfolio</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" />
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    :root {
+      --header-height: 80px;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      line-height: 1.6;
+      color: #fff;
+      background-color: #111111;
+      background-image: url('your-noise-texture.png');
+      background-repeat: repeat;
+      background-size: cover;
+      scroll-behavior: smooth;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    header {
+      height: var(--header-height);
+      padding: 10px 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      background-color: #000;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      height: var(--header-height);
+    }
+    nav .logo .name {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: #2193b0;
+      margin-top: 5px;
+    }
+    nav .logo .title {
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: #c4c4c4;
+      margin-top: 2px;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+    }
+    nav ul li {
+      margin-left: 20px;
+    }
+    nav ul li a {
+      font-weight: 600;
+      transition: color 0.3s;
+      color: #fff;
+    }
+    nav ul li a:hover {
+      color: #2193b0;
+    }
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #fff;
+      background: none;
+      border: none;
+    }
+    .lang-buttons {
+      margin-left: 20px;
+      margin-top: 8px;
+    }
+    .lang-buttons button {
+      background: #2193b0;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      margin-left: 5px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+    .lang-buttons button:hover {
+      background: #197a91;
+    }
+    .hero {
+      height: 70vh;
+      min-height: 500px;
+      position: relative;
+      overflow: hidden;
+      padding-top: var(--header-height);
+    }
+    .hero video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      background: #000;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.3));
+      z-index: -1;
+    }
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      text-align: center;
+      color: #fff;
+      padding: 0 20px;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      animation: fadeInDown 1s ease-out;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      animation: fadeInUp 1s ease-out;
+    }
+    .btn {
+      background: #2193b0;
+      color: #fff;
+      padding: 10px 30px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background: #197a91;
+    }
+    section {
+      padding: 40px 0;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 2rem;
+      color: #2193b0;
+    }
+    .profile-img-container {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .profile-img {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid #2193b0;
+      box-shadow: 0 0 20px rgba(33, 147, 176, 0.3);
+    }
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: left;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      padding: 10px;
+    }
+    .content p {
+      margin-bottom: 1rem;
+    }
+    .contact form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+    }
+    .contact input, .contact textarea {
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+    .contact button {
+      background: #2193b0;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .contact button:hover {
+      background: #197a91;
+    }
+    /* ... (keep all your original styles ABOVE the media queries) ... */
+    
+    @media (max-width: 768px) {
+      /* Hide the navigation list and menu toggle on mobile */
+      header .container nav ul,
+      header .container nav .menu-toggle {
+        display: none;
+      }
+      /* Ensure the logo (name and title) and language toggle remain visible */
+      header .container nav .logo,
+      header .container nav .lang-buttons {
+        display: block;
+      }
+      /* Adjust header to fit only the visible elements */
+      header {
+        height: auto;
+        padding: 10px;
+      }
+      /* Adjust hero padding since header space is reduced */
+      .hero {
+        padding-top: 0;
+        height: 90vh;
+        min-height: 400px;
+      }
+      /* Optionally adjust content padding */
+      .content {
+        padding: 20px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      /* Language button positioning */
+      .lang-buttons {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+      /* Logo sizing adjustments if needed */
+      nav .logo .name,
+      nav .logo .title {
+        font-size: 1rem;
+      }
+      /* Contact form adjustments */
+      .contact-form input,
+      .contact-form textarea {
+        font-size: 14px;
+      }
+      .language-toggle button {
+        font-size: 14px;
+        padding: 10px;
+      }
+    }
+    
+    /* ... (keep the rest of your styles BELOW the media queries) ... */
+    nav .logo .name,
+    nav .logo .title {
+      font-size: 1rem;
+    }
+    
+    .language-toggle button {
+      font-size: 14px;
+      padding: 10px;
+    }
+    
+    .contact-form input,
+    .contact-form textarea {
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">
+          <div class="name" data-lang="en">M'Hamed Lahlou</div>
+          <div class="name" data-lang="fr" style="display:none;">M'Hamed Lahlou</div>
+          <div class="title" data-lang="en">Certified Massage Therapist</div>
+          <div class="title" data-lang="fr" style="display:none;">Massothérapeute certifié</div>
+        </div>
+        <ul id="nav-list">
+          <li>
+            <a href="#home" data-lang="en">Home</a>
+            <a href="#home" data-lang="fr" style="display:none;">Accueil</a>
+          </li>
+          <li>
+            <a href="#about" data-lang="en">About</a>
+            <a href="#about" data-lang="fr" style="display:none;">À propos</a>
+          </li>
+          <li>
+            <a href="#experience" data-lang="en">Experience</a>
+            <a href="#experience" data-lang="fr" style="display:none;">Expérience</a>
+          </li>
+          <li>
+            <a href="#skills" data-lang="en">Skills</a>
+            <a href="#skills" data-lang="fr" style="display:none;">Compétences</a>
+          </li>
+          <li>
+            <a href="#contact" data-lang="en">Contact</a>
+            <a href="#contact" data-lang="fr" style="display:none;">Contact</a>
+          </li>
+        </ul>
+        <div class="lang-buttons">
+          <button onclick="toggleLanguage('en')" aria-label="Switch to English">English</button>
+          <button onclick="toggleLanguage('fr')" aria-label="Passer au Français">Français</button>
+        </div>
+        <button class="menu-toggle">☰</button>
+      </nav>
+    </div>
+  </header>
+  
+  <section class="hero" id="home">
+    <video autoplay muted loop>
+      <source src="https://cdn.pixabay.com/video/2018/06/01/16531-273379399_large.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="hero-content">
+      <h1 data-lang="en">Optimize Your Physical Performance</h1>
+      <h1 data-lang="fr" style="display:none;">Optimisez votre performance physique</h1>
+      <p data-lang="en">Professional Therapeutic Massage</p>
+      <p data-lang="fr" style="display:none;">Massage thérapeutique professionnel</p>
+      <button class="btn" data-lang="en" onclick="location.href='#contact'">Contact me</button>
+      <button class="btn" data-lang="fr" onclick="location.href='#contact'" style="display:none;">Contactez moi</button>
+      <div class="scroll-prompt">↓</div>
+    </div>
+  </section>
+  
+  <section class="about" id="about">
+    <div class="container">
+      <h2 class="section-title" data-lang="en">About Me</h2>
+      <h2 class="section-title" data-lang="fr" style="display:none;">À propos de moi</h2>
+      <div class="profile-img-container">
+        <img src="your-profile-picture.jpg" alt="Profile Picture" class="profile-img">
+      </div>
+      <div class="content">
+        <div data-lang="en">
+          <p>Dedicated to enhancing athletic performance and overall well-being, I am a certified massage therapist from the Académie de Massage Scientifique, currently advancing my expertise through specialized training in sports kinesitherapy.</p>
+          <p>My practice focuses on helping clients achieve their peak potential by increasing range of motion, alleviating muscle tension, and accelerating recovery times. I bring a unique understanding of athletic needs as an active weightlifter who values proper recovery as a cornerstone of performance.</p>
+          <p>My professional background combines two valuable skill sets: the attentive listening and problem-solving abilities developed during my technical support career, and the adaptability and client-focused approach honed as a self-employed professional in the entertainment industry. This diverse experience translates into massage therapy that is both technically precise and deeply personalized.</p>
+        </div>
+        <div data-lang="fr" style="display:none;">
+          <p>Dédié à l'amélioration des performances athlétiques et du bien-être général, je suis un massothérapeute certifié de l'Académie de Massage Scientifique, actuellement en train de perfectionner mon expertise grâce à une formation spécialisée en kinésithérapie sportive.</p>
+          <p>Ma pratique se concentre sur l’aide aux clients pour atteindre leur plein potentiel en augmentant leur amplitude de mouvement, en soulageant les tensions musculaires et en accélérant les temps de récupération. En tant qu'haltérophile, j'accorde une importance primordiale à une récupération adéquate, pierre angulaire de la performance.</p>
+          <p>Mon parcours professionnel en support technique combine deux ensembles précieux de compétences: l'écoute attentive et la capacité à résoudre des problèmes d'une part, et l'adaptabilité ainsi qu'une approche centrée sur le client, affinée en tant que professionnel indépendant dans l'industrie du divertissement, d'autre part. Cette expérience diversifiée se traduit par une massothérapie à la fois techniquement précise et profondément personnalisée.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="experience" id="experience">
+    <div class="container">
+      <h2 class="section-title" data-lang="en">Experience</h2>
+      <h2 class="section-title" data-lang="fr" style="display:none;">Expérience</h2>
+      <div class="content">
+        <div data-lang="en">
+          <p>During my comprehensive training, I completed an intensive six-day clinical internship at the Clinique École of the Académie de Massage Scientifique. Working full days in a professional environment, I refined my Swedish massage techniques and developed effective approaches to muscular tension relief through hands-on client work.</p>
+        </div>
+        <div data-lang="fr" style="display:none;">
+          <p>Pendant ma formation complète, j'ai effectué un stage clinique intensif de six jours à la Clinique École de l'Académie de Massage Scientifique. Travaillant de longues journées dans un environnement professionnel, j'ai perfectionné mes techniques de massage suédois et développé des approches efficaces pour soulager les tensions musculaires grâce à un travail pratique auprès des clients.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="skills" id="skills">
+    <div class="container">
+      <h2 class="section-title" data-lang="en">Skills</h2>
+      <h2 class="section-title" data-lang="fr" style="display:none;">Compétences</h2>
+      <div class="content">
+        <div data-lang="en">
+          <p>I specialize in Swedish Massage and Muscular Tension Massage techniques, providing therapeutic relief tailored to individual needs. My ongoing professional development includes advanced training in Kinesiotherapy, with additional certifications in lymphatic drainage, chair massage, flush massage, vacuotherapy, myoflossing, and neuro-proprioceptive taping to be completed by the end of this year. This expanding toolkit allows me to offer comprehensive care addressing diverse physical needs with precision and expertise.</p>
+        </div>
+        <div data-lang="fr" style="display:none;">
+          <p>Je me spécialise dans les techniques de massage suédois et de massage des tensions musculaires, offrant un soulagement thérapeutique adapté aux besoins individuels. Mon développement professionnel continu comprend une formation avancée en kinésithérapie, ainsi que des certifications supplémentaires en drainage lymphatique, massage sur chaise, flush massage, vacuothérapie, myoflossing et taping neuro-proprioceptif, à compléter d'ici la fin de l'année. Cet ensemble de compétences en constante expansion me permet d'offrir des soins complets répondant avec précision et expertise à une diversité de besoins physiques.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2 class="section-title" data-lang="en">Contact Me</h2>
+      <h2 class="section-title" data-lang="fr" style="display:none;">Contactez-moi</h2>
+      <div style="text-align: center; font-weight: bold; font-size: 18px; margin-top: 20px;">
+        <div data-lang="en">
+          <p>📧 Contact me at <a href="mailto:mhamed_lahlou@hotmail.com">mhamed_lahlou@hotmail.com</a></p>
+        </div>
+        <div data-lang="fr" style="display:none;">
+          <p>📧 Contactez-moi à <a href="mailto:mhamed_lahlou@hotmail.com">mhamed_lahlou@hotmail.com</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <footer>
+    <p data-lang="en">&copy; 2025 - Designed by M'Hamed Lahlou</p>
+    <p data-lang="fr" style="display:none;">&copy; 2025 - Conçu par M'Hamed Lahlou</p>
+  </footer>
+  
+  <script>
+    // Function to toggle languages
+    function toggleLanguage(lang) {
+      const langElements = document.querySelectorAll('[data-lang]');
+      langElements.forEach(element => {
+        if (element.getAttribute('data-lang') === lang) {
+          element.style.display = '';
+        } else {
+          element.style.display = 'none';
+        }
+      });
+    }
+  
+    document.addEventListener('DOMContentLoaded', () => {
+      toggleLanguage('en'); // Default to English
+    });
+  </script>
+</body>
+</html>
